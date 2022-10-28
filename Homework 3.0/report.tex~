@@ -1,0 +1,83 @@
+%!Tex Program = xelatex
+%\documentclass[a4paper]{article}
+\documentclass[a4paper]{ctexart}
+\usepackage{xltxtra}
+%\setmainfont[Mapping=tex-text]{AR PL UMing CN:style=Light}
+%\setmainfont[Mapping=tex-text]{AR PL UKai CN:style=Book}
+%\setmainfont[Mapping=tex-text]{WenQuanYi Zen Hei:style=Regular}
+%\setmainfont[Mapping=tex-text]{WenQuanYi Zen Hei Sharp:style=Regular}
+%\setmainfont[Mapping=tex-text]{AR PL KaitiM GB:style=Regular} 
+%\setmainfont[Mapping=tex-text]{AR PL SungtiL GB:style=Regular} 
+%\setmainfont[Mapping=tex-text]{WenQuanYi Zen Hei Mono:style=Regular} 
+
+
+\title{操作变数和环境变量}
+\author{林敬翊\\信计3210300367}
+\date{2022/06/28}
+\begin{document}
+\maketitle
+\pagestyle{empty}
+
+\section{环境变量}
+
+环境变量（environment variables）一般是指在操作系统中用来指定操作系统运行环境的一些参数。如：我们在编写C/C++代码的时候，在链接的时候，从来不知道我们的所链接的动态静态库在哪里，但是照样可以链接成功，生成可执行程序，原因就是有相关环境变量帮助编译器进行查找。\\
+
+环境变量通常具有某些特殊用途，还有在系统当中通常具有全局特性。\\
+
+我们可以透过一些例子来理解几个特殊变量所带来的含义：\\
+
+\begin{verbatim}
+$ IFS = ''
+$ set qwe asd zxc
+$ echo "$@"
+qwe asd zxc
+$ echo "$*"
+qweasdzxc
+\end{verbatim}
+\\
+从上述可知，我们一开始利用IFS 和 set来输入一些变量，然后透过\verb|$@,$*|来驱动上述变量。仔细观察可知，\verb|$@|输出变量分开，而\verb|$*|输出变量连续。\\
+
+\newpage
+\section{实践}
+我们可以打开全新脚本保存为123123后不要忘记使用 chmod a+x 123123使其可执行，如下：
+\begin{verbatim}
+#!/bin/sh
+IFS='%'
+set qwe asd zxc
+
+salutation="Bello"
+echo $salutation
+echo "The program $0 is now running"
+echo "The second parameter was $2"
+echo "The first parameter was $1"
+echo "The parameter list was $*"
+echo "The user's home directory is $HOME"
+echo "$@"
+
+echo "The script is now complete"
+
+exit 0
+
+\end{verbatim}
+
+如果我们运行次脚本，将会得到以下输出:
+
+\begin{verbatim}
+Bello
+The program ./123123 is now running
+The second parameter was asd
+The first parameter was qwe
+The parameter list was qwe%asd%zxc
+The user's home directory is /home/yayyy
+qwe asd zxc
+The script is now complete
+\end{verbatim}
+
+透过上面的输出的数据可知\verb|$0|对应的是\verb|./____|(底线为文件名称）；\verb|$1$2$3|分对应set上的1 2 3数据，分别以空格区分；而IFS则用于当输入\verb|$*|时链接数据的符号，若什么都没写则链接在一起。同时我们也可以观察到\verb|$@|和\verb|$*|的差别在于前者不会受到IFS影响输出，而后者则会受到IFS影响.
+
+
+
+\bibliographystyle{plain}
+\bibliography{crazyfish.bib}
+
+\end{document}

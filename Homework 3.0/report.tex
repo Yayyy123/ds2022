@@ -1,0 +1,53 @@
+%!Tex Program = xelatex
+%\documentclass[a4paper]{article}
+\documentclass[a4paper]{ctexart}
+\usepackage{xltxtra}
+\usepackage{graphicx}
+\usepackage{float}
+%\setmainfont[Mapping=tex-text]{AR PL UMing CN:style=Light}
+%\setmainfont[Mapping=tex-text]{AR PL UKai CN:style=Book}
+%\setmainfont[Mapping=tex-text]{WenQuanYi Zen Hei:style=Regular}
+%\setmainfont[Mapping=tex-text]{WenQuanYi Zen Hei Sharp:style=Regular}
+%\setmainfont[Mapping=tex-text]{AR PL KaitiM GB:style=Regular} 
+%\setmainfont[Mapping=tex-text]{AR PL SungtiL GB:style=Regular} 
+%\setmainfont[Mapping=tex-text]{WenQuanYi Zen Hei Mono:style=Regular} 
+
+
+\title{AVL Tree}
+\author{林敬翊\\信计3210300367}
+\date{2022/10/28}
+\begin{document}
+\maketitle
+\pagestyle{empty}
+
+\section{设计思路}
+
+因为我们的树是使用AvlTree，所以可以通过自身的调节确保他们平衡以进行查找，所以复杂度为$O(k+logn)$\\
+
+分析，理论上 我们改动了insert函数的情况，每层的时间复杂度为$O(1)$，总的时间复杂度不超过insert自身的时间复杂度。\\
+
+我们最后采用PrintElement操作，并通过打印时间计算时间复杂度。\\
+\section{AVL理论}
+
+(1) 查找代价： AVL查找效率最好，最坏情况都是$O(logN)$数量级的。\\
+
+(2) 插入代价：AVL插入操作的代价仍然在$O(logN)$级别上(插入结点需要首先查找插入的位置)。\\
+
+(3) 删除代价：AVL每一次删除操作最多需要$O(logN)$次旋转。因此，删除操作的时间复杂度为$O(logN)+O(logN)=O(2logN)$\\
+
+AVL 效率总结 : 查找的时间复杂度维持在$O(logN)$，不会出现最差情况\\
+
+AVL树在执行每个插入操作时，其时间复杂度在$O(logN)$左右。\\
+
+AVL树在执行删除时代价稍大，执行每个删除操作的时间复杂度需要$O(2logN)$。\\
+
+\section{数值结果分析}
+经过运算 我们可以得到下图\\
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{avl.png}
+  \caption{测试结果}
+\end{figure}
+
+由测试结果可以发现 函数在运行的时候是符合一次函数的关系，所以可知函数的时间复杂度收到k控制，为$O(k)$
+\end{document}

@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+#include "AvlTree.h"
+#include <algorithm>
+#include <random>
+ #include <set>
+#include <time.h>
+using namespace std;
+
+
+int main()
+{
+        AvlTree<int> T;
+	for (int a = 100;  a<10000, a *=5;
+        {
+	  for( int i ; i<100 ,i++);
+	    T.insert(i)
+	  int k1 = -1;
+	  int k2 = 1000;
+          T.printBetween( k1, k2 );
+	  double duration = double(clock()-start)/CLOCKS_PER_SEC;
+	  printf("Time:%.7f",duration);
+	  cout<<endl;
+	   }
+        return 0;
+}
